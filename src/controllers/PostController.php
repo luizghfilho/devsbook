@@ -4,8 +4,7 @@ namespace src\controllers;
 use \core\Controller;
 use \src\handlers\UserHandler;
 use \src\handlers\PostHandler;
-
-class HomeController extends Controller {
+class PostController extends Controller {
  
     private $loggedUser;
 
@@ -17,18 +16,18 @@ class HomeController extends Controller {
             
     }
 
-    public function index() {
-        $page = intval(filter_input(INPUT_GET, 'page'));
+    public function new() {
+        $body = filter_input(INPUT_POST, 'body');
 
-        $feed = PostHandler::getHomeFeed(
-            $this->loggedUser->id,
-            $page
-        );
+        if($body) {
+            PostHandler::addPost(
+                $this->loggedUser->id,
+                'text',
+                $body
+            );
 
-        $this->render('home', [
-            'loggedUser' => $this->loggedUser,
-            'feed' => $feed
-        ]);
+        }
+        $this->redirect('/');
         
     }
 

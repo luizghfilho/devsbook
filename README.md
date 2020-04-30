@@ -1,3 +1,4 @@
+As linhas abaixo vieram quando clonei.
 ## Instalação
 Você pode clonar este repositório OU baixar o .zip
 
